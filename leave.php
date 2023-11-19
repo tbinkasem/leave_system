@@ -3,11 +3,15 @@
     include 'conf.php';
         
     session_start();
+    error_reporting(0);
 
     if($_SESSION['UserName'] == "")
     {
-        echo "<h2>กรุณาทำการเข้าสู่ระบบ...</h2>";
+        echo "<img style='display: block; margin-left: auto; margin-right: auto;' src='images/block.png'>";
+        echo "<h2 style='text-align: center; color: red; margin-top: 10%;'>กรุณาทำการเข้าสู่ระบบ...</h2>";
+        echo "<meta http-equiv='refresh' content='3; url=index.html'>";
         exit();
+        
     }
 
     $dd = date('d');
@@ -96,8 +100,9 @@
         }
 
         .nav{
+            display: flex;
             background: linear-gradient(-90deg, #dcf803, #0327ef);
-            height: 200px;
+            height: 150px;
             margin-top: 1%;
             border-style: groove;
         }
@@ -133,12 +138,10 @@
             background-color: yellow;
         }
 
-        .position{            
-            position: absolute;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
+        .position{     
+            display: flex;
+            flex-direction: row;       
+            justify-content: center;
         }
 
         .up1 {
@@ -147,7 +150,7 @@
             height: 0px;
             border-style: inset;
             border-width: 0 100px 170px 100px;
-            border-color: transparent transparent navy transparent;
+            border-color: transparent transparent yellow transparent;
             float: left;
             transform: rotate(360deg);
             -ms-transform: rotate(360deg);
@@ -164,7 +167,7 @@
             width: 93px;
             height: 93px;
             margin: 0px;
-            color: antiquewhite;
+            color: black;
         }
 
         .up2 {
@@ -218,28 +221,79 @@
             margin: 0px;
             color: antiquewhite;
         }
+
+        .up4 {
+            padding: 1px;
+            width: 0px;
+            height: 0px;
+            border-style: inset;
+            border-width: 0 100px 170px 100px;
+            border-color: transparent transparent navy transparent;
+            float: left;
+            transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+        }
+
+        .up4 p {
+            text-align: center;
+            top: 80px;
+            left: -47px;
+            position: relative;
+            width: 93px;
+            height: 93px;
+            margin: 0px;
+            color: antiquewhite;
+        }
+
+        .up5 {
+            padding: 1px;
+            width: 0px;
+            height: 0px;
+            border-style: inset;
+            border-width: 0 100px 170px 100px;
+            border-color: transparent transparent chartreuse transparent;
+            float: left;
+            transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+        }
+
+        .up5 p {
+            text-align: center;
+            top: 80px;
+            left: -47px;
+            position: relative;
+            width: 93px;
+            height: 93px;
+            margin: 0px;
+            color: black;
+        }
         
     </style>
 </head>
 <body>
+
     <div class="nav">
+
         <h2>ระบบการลาออนไลน์ : วิทยาลัยการอาชีพปัตตานี</h2>
         <marquee
             scrolldelay="100"
             direction="right"
             behavior="alternate"
-            style="border: 1px dashed chartreuse; color: orangered; font-weight: bolder; font-size: 20px;">
+            style="color: orangered; font-weight: bolder; font-size: 20px; margin-top: 20px;">
             วัน<?php echo $dn; ?>ที่  <?php echo $dd; ?>  <?php echo $dm; ?> พ.ศ.<?php echo ($dy+543); ?>
         </marquee>
-        <h2>ธีระ  บินกาเซ็ม</h2>
-        <br>
-        <a href="logout.php" class="logout">
-            ออกจากระบบ
-        </a>
+        <img style="padding: 5px; margin-top: 10px; border-radius: 50%; border: 1px dashed black; width: 10%; height: 90%; text-align: right;" src="images/<?php echo $_SESSION['Photo']; ?>" alt="profile">
+        <p style="position: relative; width: 20%; font-weight: bolder;">ธีระ  บินกาเซ็ม</p>
     
     </div>
 
-    <br>
+    <br><br><br>
 
     <div class="position">
 
@@ -258,6 +312,18 @@
         <a href="form_leave.php" target="_blank">
             <div class="up3">
                 <p>กรอกแบบฟอร์มลา</p>
+            </div>
+        </a>
+
+        <a href="report_leave.php" target="_blank">
+            <div class="up4">
+                <p>สถิติการลา</p>
+            </div>
+        </a>
+
+        <a href="logout.php" target="_blank">
+            <div class="up5">
+                <p>ออกจากระบบ</p>
             </div>
         </a>
         

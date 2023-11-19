@@ -4,7 +4,7 @@
 
     include "conf.php";
 
-    $strSQL = "SELECT * FROM member WHERE Username = '".mysqli_real_escape_string($conn,$_POST['idcard'])."' 
+    $strSQL = "SELECT * FROM member WHERE UserName = '".mysqli_real_escape_string($conn,$_POST['idcard'])."' 
     and Password = '".mysqli_real_escape_string($conn,$_POST['pass'])."'";
     $objQuery = mysqli_query($conn,$strSQL);
     $objResult = mysqli_fetch_array($objQuery);
@@ -16,12 +16,10 @@
     }
     else
     {
-            $_SESSION["UserName"] = $objResult["Username"];
-
-            session_write_close();
-
+            $_SESSION["UserName"] = $objResult["UserName"];
+            $_SESSION["FullName"] = $objResult["FullName"];
+            $_SESSION["Photo"] = $objResult["Photo"];
             header("location: leave.php");
-
     }
     mysqli_close($conn);
 
