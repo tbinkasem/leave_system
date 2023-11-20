@@ -102,7 +102,7 @@
         .nav{
             display: flex;
             background: linear-gradient(-90deg, #dcf803, #0327ef);
-            height: 150px;
+            height: 200px;
             margin-top: 1%;
             border-style: groove;
         }
@@ -149,7 +149,7 @@
             width: 0px;
             height: 0px;
             border-style: inset;
-            border-width: 0 100px 170px 100px;
+            border-width: 0 150px 200px 150px;
             border-color: transparent transparent yellow transparent;
             float: left;
             transform: rotate(360deg);
@@ -175,7 +175,7 @@
             width: 0px;
             height: 0px;
             border-style: inset;
-            border-width: 0 100px 170px 100px;
+            border-width: 0 150px 200px 150px;
             border-color: transparent transparent red transparent;
             float: left;
             transform: rotate(360deg);
@@ -201,7 +201,7 @@
             width: 0px;
             height: 0px;
             border-style: inset;
-            border-width: 0 100px 170px 100px;
+            border-width: 0 150px 200px 150px;
             border-color: transparent transparent green transparent;
             float: left;
             transform: rotate(360deg);
@@ -227,7 +227,7 @@
             width: 0px;
             height: 0px;
             border-style: inset;
-            border-width: 0 100px 170px 100px;
+            border-width: 0 150px 200px 150px;
             border-color: transparent transparent navy transparent;
             float: left;
             transform: rotate(360deg);
@@ -253,7 +253,7 @@
             width: 0px;
             height: 0px;
             border-style: inset;
-            border-width: 0 100px 170px 100px;
+            border-width: 0 150px 200px 150px;
             border-color: transparent transparent chartreuse transparent;
             float: left;
             transform: rotate(360deg);
@@ -289,39 +289,39 @@
             วัน<?php echo $dn; ?>ที่  <?php echo $dd; ?>  <?php echo $dm; ?> พ.ศ.<?php echo ($dy+543); ?>
         </marquee>
         <img style="padding: 5px; margin-top: 10px; border-radius: 50%; border: 1px dashed black; width: 10%; height: 90%; text-align: right;" src="images/<?php echo $_SESSION['Photo']; ?>" alt="profile">
-        <p style="position: relative; width: 20%; font-weight: bolder;">ธีระ  บินกาเซ็ม</p>
+        <p style="position: relative; width: 20%; font-weight: bolder; font-size: 22px">ธีระ  บินกาเซ็ม</p>
     
     </div>
 
-    <br><br><br>
+    <br><br><br><br><br>
 
     <div class="position">
 
-        <a href="edit_pass.php" target="_blank">
+        <a href="edit_pass.php">
             <div class="up1">
                 <p>แก้ไขรหัสผ่าน</p>
             </div>  
         </a>
 
-        <a href="edit_address.php" target="_blank">
+        <a href="edit_address.php" target="_self">
             <div class="up2">
                 <p>แก้ไข/เพิ่มที่อยู่</p>
             </div>
         </a>
 
-        <a href="form_leave.php" target="_blank">
+        <a href="form_leave.php" target="_self">
             <div class="up3">
                 <p>กรอกแบบฟอร์มลา</p>
             </div>
         </a>
 
-        <a href="report_leave.php" target="_blank">
+        <a href="report_leave.php" target="_self">
             <div class="up4">
                 <p>สถิติการลา</p>
             </div>
         </a>
 
-        <a href="logout.php" target="_blank">
+        <a href="logout.php" target="_self">
             <div class="up5">
                 <p>ออกจากระบบ</p>
             </div>
