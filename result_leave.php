@@ -227,7 +227,7 @@
         พ.ศ.
         <span>
             &nbsp;&nbsp;&nbsp;
-            <?php echo $dy + 543; ?>
+            <?php echo ($dy + 543); ?>
             &nbsp;&nbsp;&nbsp;
         </span>
     </div>

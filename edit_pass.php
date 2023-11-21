@@ -86,14 +86,14 @@
                 <tr>
                     <th>รหัสผ่านใหม่</th>
                     <td>
-                        <input type="text" name="new_pass" id="password" required>
+                        <input type="password" name="new_pass" id="password" required>
                     </td>
                     
                 </tr>
                 <tr>
                     <th>ยืนยันรหัสผ่านใหม่</th>
                     <td>
-                        <input type="text" id="confirm_password" required>
+                        <input type="password" id="confirm_password" required>
                     </td>
                     
                 </tr>

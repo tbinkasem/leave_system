@@ -14,6 +14,8 @@
         
     }
 
+
+
     $dd = date('d');
 
     $dn = date('w');
@@ -150,7 +152,7 @@
             height: 0px;
             border-style: inset;
             border-width: 0 150px 200px 150px;
-            border-color: transparent transparent yellow transparent;
+            border-color: transparent transparent #f11414 transparent;
             float: left;
             transform: rotate(360deg);
             -ms-transform: rotate(360deg);
@@ -167,7 +169,7 @@
             width: 93px;
             height: 93px;
             margin: 0px;
-            color: black;
+            color: white;
         }
 
         .up2 {
@@ -176,7 +178,7 @@
             height: 0px;
             border-style: inset;
             border-width: 0 150px 200px 150px;
-            border-color: transparent transparent red transparent;
+            border-color: transparent transparent #64dd16 transparent;
             float: left;
             transform: rotate(360deg);
             -ms-transform: rotate(360deg);
@@ -193,7 +195,7 @@
             width: 93px;
             height: 93px;
             margin: 0px;
-            color: antiquewhite;
+            color: black;
         }
 
         .up3 {
@@ -202,7 +204,7 @@
             height: 0px;
             border-style: inset;
             border-width: 0 150px 200px 150px;
-            border-color: transparent transparent green transparent;
+            border-color: transparent transparent #ffe74a transparent;
             float: left;
             transform: rotate(360deg);
             -ms-transform: rotate(360deg);
@@ -219,7 +221,7 @@
             width: 93px;
             height: 93px;
             margin: 0px;
-            color: antiquewhite;
+            color: black;
         }
 
         .up4 {
@@ -228,7 +230,7 @@
             height: 0px;
             border-style: inset;
             border-width: 0 150px 200px 150px;
-            border-color: transparent transparent navy transparent;
+            border-color: transparent transparent #c0e6ed transparent;
             float: left;
             transform: rotate(360deg);
             -ms-transform: rotate(360deg);
@@ -245,7 +247,7 @@
             width: 93px;
             height: 93px;
             margin: 0px;
-            color: antiquewhite;
+            color: black;
         }
 
         .up5 {
@@ -254,7 +256,7 @@
             height: 0px;
             border-style: inset;
             border-width: 0 150px 200px 150px;
-            border-color: transparent transparent chartreuse transparent;
+            border-color: transparent transparent #fb9d14 transparent;
             float: left;
             transform: rotate(360deg);
             -ms-transform: rotate(360deg);
@@ -273,6 +275,35 @@
             margin: 0px;
             color: black;
         }
+
+        /* #384c48 */
+
+        .up6 {
+            padding: 1px;
+            width: 0px;
+            height: 0px;
+            border-style: inset;
+            border-width: 0 150px 200px 150px;
+            border-color: transparent transparent #384c48 transparent;
+            float: left;
+            transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+        }
+
+        .up6 p {
+            text-align: center;
+            top: 80px;
+            left: -47px;
+            position: relative;
+            width: 93px;
+            height: 93px;
+            margin: 0px;
+            color: white;
+        }
+
         
     </style>
 </head>
@@ -321,8 +352,14 @@
             </div>
         </a>
 
-        <a href="logout.php" target="_self">
+        <a href="attachment.php" target="_self">
             <div class="up5">
+                <p>ส่งเอกสารแนบการลา</p>
+            </div>
+        </a>
+
+        <a href="logout.php" target="_self">
+            <div class="up6">
                 <p>ออกจากระบบ</p>
             </div>
         </a>

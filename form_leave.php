@@ -10,30 +10,6 @@
 		exit();
 	}
 
-    // $title = $_POST['title'];
-
-    // $teacher= $_POST['teacher'];
-    // $position = $_POST['position'];
-
-    // $cause_now = $_POST['cause_now'];
-    // $sday_now = $_POST['sday_now'];
-    // $lday_now = $_POST['lday_now'];
-    // $sumday_now = $_POST['sumday_now'];
-
-    // $cause_past = $_POST['cause_past'];
-    // $sday_past = $_POST['sday_past'];
-    // $lday_past = $_POST['lday_past'];
-    // $sumday_past = $_POST['sumday_past'];
-
-    // $home_id = $_POST['home_id'];
-    // $road = $_POST['road'];
-    // $soi = $_POST['soi'];
-    // $tambon = $_POST['tambon'];
-    // $amphue = $_POST['amphue'];
-    // $province = $_POST['province'];
-    // $tel = $_POST['tel'];
-    // $place_work = $_POST['place_work'];
-
 ?>
 
 <!DOCTYPE html>
@@ -131,6 +107,19 @@
                     </div>                   
                     <div class="field">
                         <button class="firstNext next">ถัดไป</button>
+                        &nbsp;&nbsp;
+                        <button style="
+                            width: 300px; 
+                            height: 50px; 
+                            font-size: 18px; 
+                            font-weight: bold;
+                            background-color: lime;
+                            color: white;
+                            border-radius: 15px;">
+                            <a href="leave.php" style="text-decoration: none; color: black;">
+                                กลับไปหน้าหลัก
+                            </a>
+                        </button>
                     </div>
                 </div>
                 
