@@ -25,100 +25,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แก้ไขรหัสผ่าน</title>
+    <link rel="stylesheet" href="css/editpass.css">
     <script src="js/confirm_pass.js"></script>
-    <style>
-
-        body{
-            font-size: 22px;
-        }
-
-        div{
-            border: 2px dashed green;
-            margin: auto;
-            width: 50%;
-            padding: 50px;
-        }
-
-        button{
-            width: 200px;
-            height: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: blue;
-            color: white;
-            border-radius: 15px;
-        }
-
-        .abutton{
-            width: 200px;
-            height: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: lime;
-            color: white;
-            border-radius: 15px;
-        }
-
-        a{
-            text-decoration: none;
-            color: black;
-        }
-
-    </style>
 </head>
 <body>
-    
-    <br><br><br>
-    <div>
-        <h2>ข้อมูลรหัสผ่านที่จะทำการแก้ไข</h2> 
-        <br>
-        <form action="process_edit_pass.php" method="post">
+    <div class="form">
+      <form action="process_edit_pass.php" method="post">
+        <div class="title">ข้อมูลรหัสผ่าน</div>
+        <div class="subtitle">ที่จะทำการแก้ไข</div>
+        <div class="input-container ic1">
+          <input class="input" type="text" value="<?php echo $result["Password"];?>" disabled />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">รหัสผ่านเดิม</label>
+        </div>
+        <div class="input-container ic2">
+          <input class="input" type="password" name="new_password" required />
+          <div class="cut"></div>
+          <label for="new_password" class="placeholder">รหัสผ่านใหม่</label>
+        </div>
+        <div class="input-container ic2">
+          <input class="input" type="password" id="confirm_password" required />
+          <div class="cut cut-short"></div>
+          <label for="confirm_password" class="placeholder">ยืนยันรหัสผ่านใหม่</>
+        </div>
+        <button type="text" class="submit1">บันทึกรหัสผ่านใหม่</button>
+      </form>
+        <a href="leave.php">
+          <button type="text" class="submit2">กลับไปหน้าหลัก</button>
+        </a>
+      </div>
+      <script src="js/confirm_pass.js"></script>
 
-            <table>
-                <tr>
-                    <th>
-                        รหัสผ่านเดิม
-                    </th>
-                    <td>
-                        <input type="text" value="<?php echo $result["Password"];?>" disabled>
-                    </td>
-                </tr>
-                <tr>
-                    <th>รหัสผ่านใหม่</th>
-                    <td>
-                        <input type="password" name="new_pass" id="password" required>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <th>ยืนยันรหัสผ่านใหม่</th>
-                    <td>
-                        <input type="password" id="confirm_password" required>
-                    </td>
-                    
-                </tr>
-            </table>
-
-            <br><br>
-
-            <button type="submit">ยืนยันรหัสผ่าน</button>
-
-        </form>
-        <br>
-        <button type="submit" class="abutton">
-            <a href="leave.php">
-                ย้อนกลับไปหน้าหลัก
-            </a>
-        </button>
-        
-    </div>
-    
-
-    <script src="js/confirm_pass.js"></script>
-
-    <?php
-    mysqli_close($conn);
-    ?>
+  <?php
+  mysqli_close($conn);
+  ?>
 
 </body>
 </html>

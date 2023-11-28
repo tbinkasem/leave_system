@@ -12,7 +12,7 @@
         
     }
 
-    $sql = "UPDATE member SET Password = '".$_POST["new_pass"]."' WHERE UserName='".$_SESSION['UserName']."'";
+    $sql = "UPDATE member SET Password = '".$_POST["new_password"]."' WHERE UserName='".$_SESSION['UserName']."'";
     $query = mysqli_query($conn,$sql);
 
     if(!$query) {

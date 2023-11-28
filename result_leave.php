@@ -2,9 +2,25 @@
 
     include 'conf.php';
     session_start();
+    // error_reporting(0);
+
+    if($_SESSION['UserName'] == "")
+	{
+		echo "<h2>กรุณาทำการเข้าสู่ระบบ...</h2>";
+		exit();
+	}
+
+
+    // ตัวแปรเริ่มต้น
+    $status1 = "";    $status2 = "";    $status3 = "";    $status4 = "";
+    $status5 = "";    $status6 = "";    $status7 = "";    $status8 = "";
+    $status9 = "";
+
+    // สร้างวันเเดือนปีที่เขียน
 
     $dd = date('d');
     $dm = date('m');
+
     switch ($dm) {
         case '01':
             $dm = "มกราคม";
@@ -47,62 +63,278 @@
     
     $dy = date('Y');
 
-    $status1 = "";
-    $status2 = "";
-    $status3 = "";
-    $status4 = "";
-
-    $title = $_POST['title'];
-
-    $teacher = $_POST['teacher'];
-    $position = $_POST['position'];
-
-    $case = $_POST['case_now'];
-
-    switch ($case) {
-        case 'ป่วย':
-            $cause_now = $case;
-            $status1 = "checked";
-            break;
-        
-        case 'กิจส่วนตัว':
-            $cause_now = $case;
-            $status2 = "checked";
-            break;
-
-        case 'คลอดบุตร':
-            $cause_now = $case;
-            $status3 = "checked";
-            break;
-
-        default:
-            $cause_now = "ช่วยเหลือภรรยาที่คลอดบุตร";
-            $status4 = "checked";
-            break;
+    if(isset($_SESSION['title'])){
+        $title = $_SESSION['title'];
+    }else{
+        $title = "";
     }
 
+    if(isset($_SESSION['fullname'])){
+        $fullname = $_SESSION['fullname'];
+    }else{
+        $fullname = "";
+    }
 
-    // $cause_now = $_POST['case_now'];
-    $case1 = $_POST['case1'];
-    $case2 = $_POST['case2'];
+    if(isset($_SESSION['position'])){
+        $position = $_SESSION['position'];
+    }else{
+        $position = "";
+    }
 
-    // $sday_now = $_POST['sday_now'];
-    // $lday_now = $_POST['lday_now'];
-    // $sumday_now = $_POST['sumday_now'];
+    if(isset($_SESSION['case_now'])){
+        $case_now = $_SESSION['case_now'];
+    }else{
+        $case_now = "";
+    }
+    
+    if(isset($_SESSION['case1_now'])){
+        $case1_now = $_SESSION['case1_now'];
+    }else{
+        $case1_now = "";
+    }
 
-    // $cause_past = $_POST['cause_past'];
-    // $sday_past = $_POST['sday_past'];
-    // $lday_past = $_POST['lday_past'];
-    // $sumday_past = $_POST['sumday_past'];
+    if(isset($_SESSION['case2_now'])){
+        $case2_now = $_SESSION['case2_now'];
+    }else{
+        $case2_now = "";
+    }
 
-    // $home_id = $_POST['home_id'];
-    // $road = $_POST['road'];
-    // $soi = $_POST['soi'];
-    // $tambon = $_POST['tambon'];
-    // $amphue = $_POST['amphue'];
-    // $province = $_POST['province'];
-    // $tel = $_POST['tel'];
-    // $place_work = $_POST['place_work'];
+    if(isset($_SESSION['case_past'])){
+        $case_past = $_SESSION['case_past'];
+    }else{
+        $case_past = "";
+    }
+
+    if(isset($_SESSION['sday_past'])){
+        $sday_past = $_SESSION['sday_past'];
+    }else{
+        $sday_past = "";
+    }
+
+    if(isset($_SESSION['lday_past'])){
+        $lday_past = $_SESSION['lday_past'];
+    }else{
+        $lday_past = "";
+    }
+
+    if(isset($_SESSION['sumday_past'])){
+        $sumday_past = $_SESSION['sumday_past'];
+    }else{
+        $sumday_past = "";
+    }
+
+    if(isset($_SESSION['sday_now'])){
+        $sday_now = $_SESSION['sday_now'];
+        $d = substr($sday_now,8,2);
+        $m = substr($sday_now,5,2);
+        $y = substr($sday_now,0,4);
+        switch ($m) {
+            case 1:
+                $m = "มกราคม";
+                break;
+            case 2:
+                $m = "กุมภาพันธ์";
+                break;
+            case 3:
+                $m = "มีนาคม";
+                break;
+            case 4:
+                $m = "เมษายน";
+                break;
+            case 5:
+                $m = "พฤษภาคม";
+                break;
+            case 6:
+                $m = "มิถุนายน";
+                break;
+            case 7:
+                $m = "กรกฎาคม";
+                break;
+            case 8:
+                $m = "สิงหาคม";
+                break;
+            case 9:
+                $m = "กันยายน";
+                break;
+            case 10:
+                $m = "ตุลาคม";
+                break;
+            case 11:
+                $m = "พฤศจิกายน";
+                break;
+            default:
+                $m = "ธันวาคม";
+                break;
+        }
+
+        $sday_now = $d." ".$m." ".($y+543);
+
+    }else{
+        $sday_now = "";
+    }
+
+    if(isset($_SESSION['lday_now'])){
+        $lday_now = $_SESSION['lday_now'];
+        $d = substr($lday_now,8,2);
+        $m = substr($lday_now,5,2);
+        $y = substr($lday_now,0,4);
+        switch ($m) {
+            case 1:
+                $m = "มกราคม";
+                break;
+            case 2:
+                $m = "กุมภาพันธ์";
+                break;
+            case 3:
+                $m = "มีนาคม";
+                break;
+            case 4:
+                $m = "เมษายน";
+                break;
+            case 5:
+                $m = "พฤษภาคม";
+                break;
+            case 6:
+                $m = "มิถุนายน";
+                break;
+            case 7:
+                $m = "กรกฎาคม";
+                break;
+            case 8:
+                $m = "สิงหาคม";
+                break;
+            case 9:
+                $m = "กันยายน";
+                break;
+            case 10:
+                $m = "ตุลาคม";
+                break;
+            case 11:
+                $m = "พฤศจิกายน";
+                break;
+            default:
+                $m = "ธันวาคม";
+                break;
+        }
+
+        $lday_now = $d." ".$m." ".($y+543);
+    }else{
+        $lday_now = "";
+    }
+
+    if(isset($_SESSION['sumday_now'])){
+        $sumday_now = $_SESSION['sumday_now'];
+    }else{
+        $sumday_now = "";
+    }
+
+    if(isset($_SESSION['home_id'])){
+        $home_id = $_SESSION['home_id'];
+    }else{
+        $home_id = "";
+    }
+
+    if(isset($_SESSION['street'])){
+        $street = $_SESSION['street'];
+    }else{
+        $street = "";
+    }
+
+    if(isset($_SESSION['soi'])){
+        $soi = $_SESSION['soi'];
+    }else{
+        $soi = "";
+    }
+
+    if(isset($_SESSION['tambol'])){
+        $tambol = $_SESSION['tambol'];
+    }else{
+        $tambol = "";
+    }
+
+    if(isset($_SESSION['tambol'])){
+        $tambol = $_SESSION['tambol'];
+    }else{
+        $tambol = "";
+    }
+
+    if(isset($_SESSION['amphue'])){
+        $amphue = $_SESSION['amphue'];
+    }else{
+        $amphue = "";
+    }
+
+    if(isset($_SESSION['province'])){
+        $province = $_SESSION['province'];
+    }else{
+        $province = "";
+    }
+
+    if(isset($_SESSION['phone'])){
+        $phone = $_SESSION['phone'];
+    }else{
+        $phone = "";
+    }
+
+    if(isset($_SESSION['place_man'])){
+        $place_man = $_SESSION['place_man'];
+    }else{
+        $place_man = "";
+    }
+
+    if(isset($_SESSION['status1'])){
+        $status1 = $_SESSION['status1'];
+    }else{
+        $status1 = "";
+    }
+
+    if(isset($_SESSION['status2'])){
+        $status2 = $_SESSION['status2'];
+    }else{
+        $status2 = "";
+    }
+
+    if(isset($_SESSION['status3'])){
+        $status3 = $_SESSION['status3'];
+    }else{
+        $status3 = "";
+    }
+
+    if(isset($_SESSION['status4'])){
+        $status4 = $_SESSION['status4'];
+    }else{
+        $status4 = "";
+    }
+
+    if(isset($_SESSION['status5'])){
+        $status5 = $_SESSION['status5'];
+    }else{
+        $status5 = "";
+    }
+
+    if(isset($_SESSION['status6'])){
+        $status6 = $_SESSION['status6'];
+    }else{
+        $status6 = "";
+    }
+
+    if(isset($_SESSION['status7'])){
+        $status7 = $_SESSION['status7'];
+    }else{
+        $status7 = "";
+    }
+
+    if(isset($_SESSION['status8'])){
+        $status8 = $_SESSION['status8'];
+    }else{
+        $status8 = "";
+    }
+
+    if(isset($_SESSION['status9'])){
+        $status9 = $_SESSION['status9'];
+    }else{
+        $status9 = "";
+    }
 
 ?>
 
@@ -272,7 +504,7 @@
         ข้าพเจ้า
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <?php echo $teacher; ?> 
+                <?php echo $fullname; ?> 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         ตำแหน่ง
@@ -301,31 +533,34 @@
         <b>ขอลา</b> <br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="checkbox" <?php echo $status1; ?>>
-        <?php echo $cause_now; ?> เนื่องจาก
+        ป่วย เนื่องจาก
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <?php echo $case1; ?>
+            <?php echo $case1_now; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="checkbox" <?php echo $status2; ?>> 
-        <?php echo $cause_now; ?> เนื่องจาก
+        กิจส่วนตัว เนื่องจาก
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <?php echo $case2; ?>
+            <?php echo $case2_now; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;
         </span><br>
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" <?php echo $status3; ?>> คลอดบุตร 
-
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" <?php echo $status4; ?>> ช่วยเหลือภรรยาที่คลอดบุตร
-
+        <input type="checkbox" <?php echo $status3; ?>> 
+        คลอดบุตร 
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" <?php echo $status4; ?>> 
+        ช่วยเหลือภรรยาที่คลอดบุตร
+        
         <!-- สิ้นสุด เลือกประเภทการลา -->
 
         <p class="para2"></p>
@@ -335,19 +570,19 @@
         ตั้งแต่วันที่
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            16 พฤศจิกายน 2566
+            <?php echo $sday_now; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         ถึงวันที่
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            17 พฤศจิกายน 2566
+            <?php echo $lday_now; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         รวม
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                2
+            <?php echo $sumday_now; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         วัน
@@ -360,29 +595,31 @@
 
         ข้าพเจ้าได้ลา
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" checked> ป่วย &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" > กิจส่วนตัว &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" > คลอดบุตร &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" > ช่วยเหลือภรรยาที่คลอดบุตร
+        <input type="checkbox" <?php echo $status5; ?>> ป่วย &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" <?php echo $status6; ?>> กิจส่วนตัว &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" <?php echo $status7; ?>> คลอดบุตร &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" <?php echo $status8; ?>> ช่วยเหลือภรรยาที่คลอดบุตร
 
         <p class="para2"></p>
 
         ครั้งสุดท้าย เมื่อวันที่
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            16 ตุลาคม 2566
+            <!-- 16 ตุลาคม 2566 -->
+            <?php echo $sday_past; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         ถึงวันที่
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            17 ตุลาคม 2566
+            <!-- 17 ตุลาคม 2566 -->
+            <?php echo $lday_past; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         รวม
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                2
+            <?php echo $sumday_past; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         วัน
@@ -396,19 +633,21 @@
         ในระหว่างลา สามารถติดต่อข้าพเจ้าได้ที่ 
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            10/128
+            <!-- 10/128 -->
+            <?php echo $home_id; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         ถนน
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            หนองจิก
+            <!-- หนองจิก -->
+            <?php echo $street; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         ตรอก / ซอย
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &#45;
+            <?php echo $soi; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
 
@@ -417,25 +656,28 @@
         ตำบล
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &#45;
+            <?php echo $tambol; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         อำเภอ 
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            เมือง
+            <!-- เมือง -->
+            <?php echo $amphue; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         จังหวัด
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            ปัตตานี
+            <!-- ปัตตานี -->
+            <?php echo $province; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
         เบอร์โทรศัพท์
         <span>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            073-333011
+            <!-- 073-333011 -->
+            <?php echo $phone; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;
         </span>
 
@@ -456,7 +698,8 @@
                         <span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            นายอิมรอน  สุหลง
+                            <!-- นายอิมรอน  สุหลง -->
+                            <?php echo $place_man; ?>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </span>
@@ -487,7 +730,8 @@
                         (
                         <span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            นายธีระ  บินกาเซ็ม
+                            <!-- นายธีระ  บินกาเซ็ม -->
+                            <?php echo $fullname; ?>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </span>
                         )
@@ -671,7 +915,7 @@
                         <br>
                         <b>คำสั่ง</b>
                         <br>
-                        <input type="checkbox" checked> อนุญาต
+                        <input type="checkbox" > อนุญาต
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="checkbox" > ไม่อนุญาต
                         <br><br>

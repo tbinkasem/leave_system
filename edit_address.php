@@ -73,10 +73,15 @@
             background-color: #9FE2BF;
         }
 
+        table{
+            width: 95%;
+        }
+
         th,td{
             text-align: right;
             color: blue;
         }
+
         input:focus{
             background-color: lime;
         }
@@ -126,13 +131,16 @@
                     <th>จังหวัด</th>
                     <td>
                         <input type="text" name="province" value="<?php echo $result["province"];?>" required>
-                    </td>                    
+                    </td>
                 </tr>
                 <tr>
-                    <th>เบอร์โทรศัพท์</th>
+                    <th>โทรศัพท์มือถือ</th>
                     <td>
-                        <input type="tel" name="phone" value="<?php echo $result["phone"];?>" required>
-                    </td>                    
+                        <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo $result["phone"];?>" required>
+                    </td>
+                    <td rowspan="7">
+                        (ตัวอย่างรูปแบบ 0xx-xxx-xxxx)
+                    </td>
                 </tr>
             </table>
 

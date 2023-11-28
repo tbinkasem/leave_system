@@ -1,8 +1,7 @@
 <?php
 
-    session_start();
-
     include "conf.php";
+    session_start();
 
     $strSQL = "SELECT * FROM member WHERE UserName = '".mysqli_real_escape_string($conn,$_POST['idcard'])."' 
     and Password = '".mysqli_real_escape_string($conn,$_POST['pass'])."'";
