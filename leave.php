@@ -150,7 +150,7 @@
         </span>
         &nbsp;
         <span style="width: 30%; height: 150px;">
-            <a href="attachment.php">
+            <a href="pre_attachment.php">
                 <img src="images/doc-cleaned.svg" alt="password" style="display: block; margin-left: auto; margin-right: auto;">
             </a>
             <p style="text-align: center;">แนบเอกสารประกอบการลา</p>

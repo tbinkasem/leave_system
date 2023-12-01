@@ -5,6 +5,19 @@
   outline: none;
   font-family: 'Poppins', sans-serif;
 }
+
+@font-face {
+  font-family: 'THSarabun';
+  src: url('fonts/THSarabun.eot');
+  src: url('fonts/THSarabun.eot#iefix') format('embedded-opentype'),
+       url('fonts/THSarabun.woff') format('woff'),
+       url('fonts/THSarabun.ttf') format('truetype'),
+       url('fonts/THSarabun.svg#Sri-TSCRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body{
   display: flex;
   align-items: center;

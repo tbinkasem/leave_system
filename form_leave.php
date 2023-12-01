@@ -241,11 +241,11 @@
                     </div>
                     <div class="field">
                         <div class="label">ครั้งสุดท้าย เมื่อวันที่</div>
-                        <input type="date" name="sday_past" value="<?php echo $objResult2['sdayNow']; ?>">
+                        <input type="text" name="sday_past" value="<?php echo $objResult2['sdayNow']; ?>">
                     </div>
                     <div class="field">
                         <div class="label">ถึงวันที่</div>
-                        <input type="date" name="lday_past" value="<?php echo $objResult2['ldayNow']; ?>">
+                        <input type="text" name="lday_past" value="<?php echo $objResult2['ldayNow']; ?>">
                     </div>
                     <div class="field">
                         <div class="label">รวม</div>

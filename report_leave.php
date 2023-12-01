@@ -1,9 +1,7 @@
 <?php
 
     include 'conf.php';
-        
     session_start();
-    error_reporting(0);
 
     if($_SESSION['UserName'] == "")
     {
@@ -14,75 +12,153 @@
         
     }
 
-    $dd = date('d');
+    $username = $_SESSION['UserName'];
 
-    $dn = date('w');
-    switch ($dn) {
-        case '0':
-            $dn = "อาทิตย์";
-            break;
-        case '1':
-            $dn = "จันทร์";
-            break;
-        case '2':
-            $dn = "อังคาร";
-            break;
-        case '3':
-            $dn = "พุธ";
-            break;
-        case '4':
-            $dn = "พฤหัสบดี";
-            break;
-        case '5':
-            $dn = "ศุกร์";
-            break;
+    // กรณีแสดงผลทั้งหมด
 
-        default:
-            $dn = "เสาร์";
-            break;
-    }
+    $sql1 = "SELECT * FROM data WHERE UserName = '".$username."' ";
+    $query1 = mysqli_query($conn,$sql1);
 
-    $dm = date('m');
-    switch ($dm) {
-        case '01':
-            $dm = "มกราคม";
-            break;
-        case '02':
-            $dm = "กุมภาพันธ์";
-            break;
-        case '03':
-            $dm = "มีนาคม";
-            break;
-        case '04':
-            $dm = "เมษายน";
-            break;
-        case '05':
-            $dm = "พฤษภาคม";
-            break;
-        case '06':
-            $dm = "มิถุนายน";
-            break;
-        case '07':
-            $dm = "กรกฎาคม";
-            break;
-        case '08':
-            $dm = "สิงหาคม";
-            break;
-        case '09':
-            $dm = "กันยายน";
-            break;
-        case '10':
-            $dm = "ตุลาคม";
-            break;
-        case '11':
-            $dm = "พฤศจิกายน";
-            break;
 
-        default:
-            $dm = "ธันวาคม";
-            break;
-    }
+    // กรณีแสดงผล กรณี ลาป่วย
 
-    $dy = date('Y');
+    $sql2 = "SELECT COUNT(title) as 'ntitle1' FROM data WHERE UserName = '".$username."' AND title = 'ลาป่วย'";
+    $query2 = mysqli_query($conn,$sql2);
+    $result2 = mysqli_fetch_assoc($query2);
+
+    // กรณีแสดงผล จำนวนวัน กรณี ลาป่วย
+
+    $sql3 = "SELECT SUM(sumdayNow) as 'nsum1' FROM data WHERE UserName = '".$username."' AND title = 'ลาป่วย'";
+    $query3 = mysqli_query($conn,$sql3);
+    $result3 = mysqli_fetch_assoc($query3);
+
+    // กรณีแสดงผล กรณี ลากิจ
+
+    $sql4 = "SELECT COUNT(title) as 'ntitle2' FROM data WHERE UserName = '".$username."' AND title = 'ลากิจส่วนตัว'";
+    $query4 = mysqli_query($conn,$sql4);
+    $result4 = mysqli_fetch_assoc($query4);
+
+    // กรณีแสดงผล จำนวนวัน กรณี ลากิจ
+
+    $sql5 = "SELECT SUM(sumdayNow) as 'nsum2' FROM data WHERE UserName = '".$username."' AND title = 'ลากิจส่วนตัว'";
+    $query5 = mysqli_query($conn,$sql5);
+    $result5 = mysqli_fetch_assoc($query5);
+
+    // กรณีแสดงผล กรณี ลาคลอดบุตร
+
+    $sql6 = "SELECT COUNT(title) as 'ntitle3' FROM data WHERE UserName = '".$username."' AND title = 'ลาคลอดบุตร'";
+    $query6 = mysqli_query($conn,$sql6);
+    $result6 = mysqli_fetch_assoc($query6);
+
+    // กรณีแสดงผล จำนวนวัน กรณี ลาคลอดบุตร
+
+    $sql7 = "SELECT SUM(sumdayNow) as 'nsum3' FROM data WHERE UserName = '".$username."' AND title = 'ลาคลอดบุตร'";
+    $query7 = mysqli_query($conn,$sql7);
+    $result7 = mysqli_fetch_assoc($query7);
+
+    // กรณีแสดงผล กรณี ลาช่วยเหลือภรรยาคลอดบุตร
+
+    $sql8 = "SELECT COUNT(title) as 'ntitle4' FROM data WHERE UserName = '".$username."' AND title = 'ลาช่วยเหลือภรรยาคลอดบุตร'";
+    $query8 = mysqli_query($conn,$sql8);
+    $result8 = mysqli_fetch_assoc($query8);
+
+    // กรณีแสดงผล จำนวนวัน กรณี ลาช่วยเหลือภรรยาคลอดบุตร
+
+    $sql9 = "SELECT SUM(sumdayNow) as 'nsum4' FROM data WHERE UserName = '".$username."' AND title = 'ลาช่วยเหลือภรรยาคลอดบุตร'";
+    $query9 = mysqli_query($conn,$sql9);
+    $result9 = mysqli_fetch_assoc($query9);
+
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงานการลา</title>
+    <link rel="stylesheet" href="css/report_leave.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>รายการลาในปีงบประมาณ</h1>
+
+        <table class="zigzag">
+            <thead>
+                <tr>
+                    <th class="header">ประภทการลา</th>
+                    <th class="header">วันเดือนปีเริ่มต้น(การลา)</th>
+                    <th class="header">วันเดือนปีสิ้นสุด(การลา)</th>
+                    <th class="header">จำนวนวันลา</th>
+                    <th class="header">เอกสารแนบท้าย</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    while($result1 = mysqli_fetch_assoc($query1))
+                    {
+                ?>
+                <tr>
+                    <td>
+                        <?php  echo $result1['title']; ?>
+                    </td>
+                    <td>
+                        <?php  echo $result1['sdayNow']; ?>
+                    </td>
+                    <td>
+                        <?php  echo $result1['ldayNow']; ?>
+                    </td>
+                    <td>
+                        <?php  echo $result1['sumdayNow']; ?>
+                    </td>
+                    <td>
+                        <?php
+                            if($result1['attachment'] == ""){ 
+                                echo "<span style='text-align: center; color: red;'>ไม่มีเอกสารแนบ</span>";
+                            }else{
+                                echo "<a href=attachment/".$result1['attachment']." target='_blank' style='text-decoration: none;'>";
+                                echo "<img src='images/pdf.png' alt='attachment'></a>";
+                            }
+                        ?>
+                        
+                    </td>
+                </tr>
+                <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+        <br><br>
+        <h3>แบบสรุปการลา</h3>
+        <ol>
+            <li>
+                <b>ลาป่วย</b>
+                <span>จำนวน  <?php  echo $result2['ntitle1']; ?>  ครั้ง  จำนวน  <?php  echo $result3['nsum1']; ?>  วัน</span>
+            </li>
+            <li>
+                <b>ลากิจส่วนตัว</b>
+                <span>จำนวน  <?php  echo $result4['ntitle2']; ?>  ครั้ง  จำนวน  <?php  echo $result5['nsum2']; ?>  วัน</span>
+            </li>
+            <li>
+                <b>ลาคลอดบุตร</b>
+                <span>จำนวน  <?php  echo $result6['ntitle3']; ?>  ครั้ง  จำนวน  <?php  echo $result7['nsum3']; ?>  วัน</span>
+            </li>
+            <li>
+                <b>ลาช่วยเหลือภรรยาที่คลอดบุตร</b>
+                <span>จำนวน  <?php  echo $result8['ntitle4']; ?>  ครั้ง  จำนวน  <?php  echo $result9['nsum4']; ?>  วัน</span>
+            </li>
+        </ol>
+        <br><br>
+        <a href="leave.php">
+            <button type="button">กลับไปหน้าหลัก</button>
+        </a>
+        
+    </div>
+    <?php
+        mysqli_close($conn);
+    ?>
+
+</body>
+</html>
