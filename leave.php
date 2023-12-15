@@ -13,7 +13,7 @@
         
     }
 
-    $dd = date('d');
+    $dd = date('j');
 
     $dn = date('w');
     switch ($dn) {

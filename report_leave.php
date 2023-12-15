@@ -68,6 +68,11 @@
     $query9 = mysqli_query($conn,$sql9);
     $result9 = mysqli_fetch_assoc($query9);
 
+    // กรณีแสดงผล จำนวนวันลาทั้งหมด
+    
+    $sql10 = "SELECT SUM(sumdayNow) as 'nsumAll' FROM data WHERE UserName = '".$username."'";
+    $query10 = mysqli_query($conn,$sql10);
+    $result10 = mysqli_fetch_assoc($query10);
 
 ?>
 
@@ -118,7 +123,7 @@
                             if($result1['attachment'] == ""){ 
                                 echo "<span style='text-align: center; color: red;'>ไม่มีเอกสารแนบ</span>";
                             }else{
-                                echo "<a href=attachment/".$result1['attachment']." target='_blank' style='text-decoration: none;'>";
+                                echo "<a href=attachments/".$result1['attachment']." target='_blank' style='text-decoration: none;'>";
                                 echo "<img src='images/pdf.png' alt='attachment'></a>";
                             }
                         ?>
@@ -143,14 +148,16 @@
             </li>
             <li>
                 <b>ลาคลอดบุตร</b>
-                <span>จำนวน  <?php  echo $result6['ntitle3']; ?>  ครั้ง  จำนวน  <?php  echo $result7['nsum3']; ?>  วัน</span>
+                <span>จำนวน  <?php  echo $result6['ntitle3']; ?>  ครั้ง  จำนวน  <?php  if($result7['nsum3'] == ""){ echo "0"; }else{ echo $result7['nsum3']; } ?>  วัน</span>
             </li>
             <li>
                 <b>ลาช่วยเหลือภรรยาที่คลอดบุตร</b>
-                <span>จำนวน  <?php  echo $result8['ntitle4']; ?>  ครั้ง  จำนวน  <?php  echo $result9['nsum4']; ?>  วัน</span>
+                <span>จำนวน  <?php  echo $result8['ntitle4']; ?>  ครั้ง  จำนวน  <?php  if($result9['nsum4'] == ""){ echo "0"; }else{ echo $result9['nsum4']; } ?>  วัน</span>
             </li>
         </ol>
-        <br><br>
+        <span class="all">จำนวนวันลาทั้งหมด</span>&nbsp;&nbsp;&nbsp;<?php echo $result10['nsumAll']; ?>&nbsp;&nbsp;&nbsp;<span class="all">วัน</span>
+        <br><br><br><br><br>
+        
         <a href="leave.php">
             <button type="button">กลับไปหน้าหลัก</button>
         </a>

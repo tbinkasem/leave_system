@@ -12,16 +12,12 @@
 
     $sumdayNow = "";
 
-    $strSQL1 = "SELECT * FROM address WHERE UserName = '".$_SESSION['UserName']."'";
+    $strSQL1 = "SELECT * FROM data WHERE UserName = '".$_SESSION['UserName']."'";
     $objQuery1 = mysqli_query($conn,$strSQL1);
-    $objResult1 = mysqli_fetch_assoc($objQuery1);
+    $objResult1 = mysqli_num_rows($objQuery1);
 
-    // $strSQL2 = "SELECT * FROM data WHERE UserName = '".$_SESSION['UserName']."'";
-    $strSQL2 = "SELECT mCaseNow,sdayNow,ldayNow,sumdayNow,UserName FROM data WHERE UserName = '".$_SESSION['UserName']."' ORDER BY sdayNow DESC LIMIT 1";
-    $objQuery2 = mysqli_query($conn,$strSQL2);
-    $objRows2 = mysqli_num_rows($objQuery2);
 
-    if($objRows2 == 0){
+    if($objResult1 == 0){
 
         $case_past = "-";
         $sday_past = "-";
@@ -36,6 +32,8 @@
         
     }else{
 
+        $strSQL2 = "SELECT mCaseNow,sdayNow,ldayNow,sumdayNow,UserName FROM data WHERE UserName = '".$_SESSION['UserName']."' ORDER BY sdayNow DESC LIMIT 1";
+        $objQuery2 = mysqli_query($conn,$strSQL2);
         $objResult2 = mysqli_fetch_assoc($objQuery2);
 
         $case_past = $objResult2['mCaseNow'];
@@ -44,29 +42,57 @@
             case 'ป่วย':
                 $case = $case_past;
                 $status5 = "selected";
+                $status6 = "";
+                $status7 = "";
+                $status8 = "";
+                $status9 = "";
                 break;
             
             case 'กิจส่วนตัว':
                 $case = $case_past;
                 $status6 = "selected";
+                $status5 = "";
+                $status7 = "";
+                $status8 = "";
+                $status9 = "";
                 break;
     
             case 'คลอดบุตร':
                 $case = $case_past;
                 $status7 = "selected";
+                $status6 = "";
+                $status5 = "";
+                $status8 = "";
+                $status9 = "";
                 break;
             case 'ช่วยเหลือภรรยาที่คลอดบุตร':
                 $case = $case_past;
                 $status8 = "selected";
+                $status6 = "";
+                $status7 = "";
+                $status5 = "";
+                $status9 = "";
                 break;
             default:
                 $case = "-";
                 $status9 = "selected";
+                $status6 = "";
+                $status7 = "";
+                $status8 = "";
+                $status5 = "";
                 break;
         }
+        
+        $sday_past = $objResult2['sdayNow'];
+        $lday_past = $objResult2['ldayNow'];
+        $sumday_past = $objResult2['sumdayNow'];
 
-        $sumdayNow = $objResult2['sumdayNow'];
     }
+
+    $strSQL3 = "SELECT * FROM address WHERE UserName = '".$_SESSION['UserName']."'";
+    $objQuery3 = mysqli_query($conn,$strSQL3);
+    $objResult3 = mysqli_fetch_assoc($objQuery3);
+
     
 ?>
 
@@ -241,15 +267,15 @@
                     </div>
                     <div class="field">
                         <div class="label">ครั้งสุดท้าย เมื่อวันที่</div>
-                        <input type="text" name="sday_past" value="<?php echo $objResult2['sdayNow']; ?>">
+                        <input type="text" name="sday_past" value="<?php echo $sday_past; ?>">
                     </div>
                     <div class="field">
                         <div class="label">ถึงวันที่</div>
-                        <input type="text" name="lday_past" value="<?php echo $objResult2['ldayNow']; ?>">
+                        <input type="text" name="lday_past" value="<?php echo $lday_past; ?>">
                     </div>
                     <div class="field">
                         <div class="label">รวม</div>
-                        <input type="text" name="sumday_past" value="<?php echo $sumdayNow; ?>">
+                        <input type="text" name="sumday_past" value="<?php echo $sumday_past; ?>">
                     </div>
                     <div class="field btns">
                         <button class="prev-3 prev">ย้อนกลับ</button>
@@ -261,20 +287,20 @@
                     <div class="title">ส่วนที่ 5 :</div>
                     <div class="field">
                         <div class="label">ในระหว่างลา สามารถติดต่อ ข้าพเจ้าได้ที่</div>
-                        <input type="text" name="home_id" placeholder="บ้านเลขที่" value="<?php echo $objResult1['homeID']; ?>" required>&nbsp;
-                        <input type="text" name="street" placeholder="ถนน / หมู่ที่" value="<?php echo $objResult1['street']; ?>" required>
+                        <input type="text" name="home_id" placeholder="บ้านเลขที่" value="<?php echo $objResult3['homeID']; ?>" required>&nbsp;
+                        <input type="text" name="street" placeholder="ถนน / หมู่ที่" value="<?php echo $objResult3['street']; ?>" required>
                     </div>
                     <div class="field">
-                        <input type="text" name="soi" placeholder="ตรอก / ซอย" value="<?php echo $objResult1['soi']; ?>" required>&nbsp;
-                        <input type="text" name="tambol" placeholder="ตำบล" value="<?php echo $objResult1['tambol']; ?>" required>
+                        <input type="text" name="soi" placeholder="ตรอก / ซอย" value="<?php echo $objResult3['soi']; ?>" required>&nbsp;
+                        <input type="text" name="tambol" placeholder="ตำบล" value="<?php echo $objResult3['tambol']; ?>" required>
                     </div>
                     <div class="field">
-                        <input type="text" name="amphue" placeholder="อำเภอ" value="<?php echo $objResult1['amphue']; ?>" required>&nbsp;
-                        <input type="text" name="province" placeholder="จังหวัด" value="<?php echo $objResult1['province']; ?>" required>
+                        <input type="text" name="amphue" placeholder="อำเภอ" value="<?php echo $objResult3['amphue']; ?>" required>&nbsp;
+                        <input type="text" name="province" placeholder="จังหวัด" value="<?php echo $objResult3['province']; ?>" required>
                     </div>
                     <div class="field">
                         <div class="label">เบอร์โทรศัพท์ / มือถือ (ตัวอย่างรูปแบบ 0xx-xxx-xxxx)</div>
-                        <input type="tel" name="phone" placeholder="0xx-xxx-xxxx" value="<?php echo $objResult1['phone']; ?>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                        <input type="tel" name="phone" placeholder="0xx-xxx-xxxx" value="<?php echo $objResult3['phone']; ?>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                     </div>
                     <div class="field btns">
                         <button class="prev-4 prev">ย้อนกลับ</button>

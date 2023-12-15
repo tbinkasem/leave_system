@@ -73,14 +73,14 @@
                 <div class="input-data">
                     <input type="text" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo $result["phone"];?>" required>
                     <div class="underline"></div>
-                    <label for="">โทรศัพท์</label>
+                    <label for="">โทรศัพท์ (รูปแบบ 08x-xxx-xxxx)</label>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-row submit-btn1">
                     <div class="input-data">
                         <div class="inner"></div>
-                        <input type="submit" value="ยืนยัน">
+                        <input type="submit" value="ยืนยันข้อมูล">
                     </div>
                 </div>
                 <div class="form-row submit-btn2">
