@@ -198,8 +198,24 @@
             break;
     }
 
-    $strSQL1 = "INSERT INTO data(Id, title, FullName, Position, mCaseNow, Case1Now, Case2Now, sdayNow, ldayNow, sumdayNow, homeId, street, soi, tambol, amphue, province, phone, placeMan, UserName)";
-    $strSQL2 = " VALUES(0,'$title','$fullname','$position','$case_now','$case1_now','$case2_now','$sday_now','$lday_now','$sumday_now','$home_id','$street','$soi','$tambol','$amphue','$province','$phone','$place_man','".$_SESSION['UserName']."')";
+    // กำหนดให้ปีงบประมาณที่ลา
+    // กำหนดตรวจสอบเดือนกันยายนหรือไม่
+    $month_check = "09";
+    // ตรวจสอบเดือนปัจจุบัน
+    $month_now = date("m");
+    // กำหนดค่าปีงบประมาณปัจจุบัน ในกรณีที่ไม่เกินเดือนกันยายน
+    $year_before = date("Y") + 543;
+    // กำหนดให้ปีงบประมาณถัดไป กรณีเกินเดือนกันยายน
+    $year_after = date("Y") + 544;
+
+    if($month_now > $month_check){
+        $year_now = $year_after;
+    }else{
+        $year_now = $year_before;
+    }
+
+    $strSQL1 = "INSERT INTO data(Id, title, FullName, Position, mCaseNow, Case1Now, Case2Now, sdayNow, ldayNow, sumdayNow, homeId, street, soi, tambol, amphue, province, phone, placeMan, ybudget, UserName)";
+    $strSQL2 = " VALUES(0,'$title','$fullname','$position','$case_now','$case1_now','$case2_now','$sday_now','$lday_now','$sumday_now','$home_id','$street','$soi','$tambol','$amphue','$province','$phone','$place_man','$year_now','".$_SESSION['UserName']."')";
     $strSQL3 = $strSQL1.$strSQL2;
     $objQuery = mysqli_query($conn,$strSQL3);
     
@@ -210,28 +226,40 @@
         echo "รอสักครู่ จะกลับไปหน้าหลัก...</h3>";
         echo "<meta http-equiv='refresh' content='3; url=leave.php'>";
     }else{
-        echo "<h2 style='border: 5px solid;  position: absolute;  top: 30%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; color: green;'>";
-        echo "ดำเนินการส่งข้อมูลการลาเรียบร้อยแล้ว</h2>";
-        echo "<h2 style='border: 5px solid;  position: absolute;  top: 40%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; color: salmon;'>";
-        echo "หากมีเอกสารต้องแนบ กรุณาเข้าไปส่งเอกสารผ่านเมนู ส่งเอกสารแนบการลา...</h2>";
+        // echo "<h2 style='border: 5px solid;  position: absolute;  top: 30%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; color: green;'>";
+        // echo "ดำเนินการส่งข้อมูลการลาเรียบร้อยแล้ว</h2>";
+        // echo "<h2 style='border: 5px solid;  position: absolute;  top: 40%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; color: salmon;'>";
+        // echo "หากมีเอกสารต้องแนบ กรุณาเข้าไปส่งเอกสารผ่านเมนู ส่งเอกสารแนบการลา...</h2>";
 
-        // echo "<h3 style='border: 5px solid;  position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; color: blue;'>";
-        // echo "รอสักครู่ จะกลับไปหน้าใหม่เพื่อสามาถพิมพ์เอกสารได้...</h3>";
-        // header("Location: result_leave.php");
-        // echo "<meta http-equiv='refresh' content='3; url=result_leave.php'>";
+        // echo "<button style='width: 300px; height: 50px; font-size: 18px; font-weight: bold; ";
+        // echo "position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; ";
+        // echo "background-color: skyblue; color: white; border-radius: 15px;'>";
+        // echo "<a href='result_leave.php' target='_blank' style='text-decoration: none; color: black;'>";
+        // echo "คลิกที่นี่...เปิดหน้าเอกสารเพื่อพิมพ์</a></button>";
 
-        echo "<button style='width: 300px; height: 50px; font-size: 18px; font-weight: bold; ";
-        echo "position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; ";
-        echo "background-color: skyblue; color: white; border-radius: 15px;'>";
-        echo "<a href='result_leave.php' target='_blank' style='text-decoration: none; color: black;'>";
-        echo "คลิกที่นี่...เปิดหน้าเอกสารเพื่อพิมพ์</a></button>";
+        // echo "<button style='width: 300px; height: 50px; font-size: 18px; font-weight: bold; ";
+        // echo "position: absolute;  top: 60%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; ";
+        // echo "background-color: lime; color: white; border-radius: 15px;'>";
+        // echo "<a href='leave.php' style='text-decoration: none; color: black;'>";
+        // echo "คลิกที่นี่...กลับไปหน้าหลัก</a></button>";
 
-        echo "<button style='width: 300px; height: 50px; font-size: 18px; font-weight: bold; ";
-        echo "position: absolute;  top: 60%;  left: 50%;  transform: translate(-50%, -50%);  padding: 10px; ";
-        echo "background-color: lime; color: white; border-radius: 15px;'>";
-        echo "<a href='leave.php' style='text-decoration: none; color: black;'>";
-        echo "คลิกที่นี่...กลับไปหน้าหลัก</a></button>";
-        
+        echo "<div class='alert'><div class='flex-container'>";
+        echo "<h2 id='ah2'>ดำเนินการส่งข้อมูลการลาเรียบร้อยแล้ว</h2>";
+        echo "<h2 id='bh2'>หากมีเอกสารต้องแนบ กรุณาเข้าไปส่งเอกสารผ่านเมนู [ส่งเอกสารแนบการลา]</h2>";
+        echo "<h2 id='ch2'>";
+        echo "<a href='result_leave.php' target='_blank' id='a1'>";
+        echo "<img src='images/printer.svg' alt='printer' width='5%'>";
+        echo "คลิกที่นี่...เปิดเอกสารเพื่อพิมพ์ส่งงานบุคลากร";
+        echo "</a>";
+        echo "</h2>";
+        echo "<h2 id='dh2'>";
+        echo "<a href='leave.php' id='a2'>";
+        echo "<img src='images/homepage.svg' alt='printer' width='5%'>";
+        echo "คลิกที่นี่...กลับไปหน้าหลัก";
+        echo "</a>";
+        echo "</h2>";
+        echo "</div>";
+
         $_SESSION['title'] = $_POST['title'];
         $_SESSION['fullname'] = $_POST['fullname'];
         $_SESSION['position'] = $_POST['position'];      
@@ -273,3 +301,78 @@
     mysqli_close($conn);
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปการยื่นเอกสารลา</title>
+    <style>
+      .alert {
+        display: block;
+        margin-top: 5%;
+        margin-right: auto;
+        margin-left: auto;
+        width: 50%;
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .flex-container > #menu {
+        background-color: #f1f1f1;
+        width: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 75px;
+        font-size: 30px;
+      }
+      .flex-container > #ah2{
+        border: 2px dotted green;
+        border-radius: 15px;
+        background-color: white;
+        line-height: 100px;
+        padding: 10px;
+        color: green;
+      }
+      .flex-container > #bh2{
+        border: 2px dotted dodgerblue;
+        border-radius: 15px;
+        background-color: white;
+        line-height: 100px;
+        padding: 10px;
+        color: dodgerblue;
+      }
+      .flex-container > #ch2{
+        border: 2px dotted coral;
+        border-radius: 15px;
+        background-color: white;
+        line-height: 80px;
+        padding: 10px;
+        text-align: center;
+      }
+      .flex-container > #dh2{
+        border: 2px dotted rebeccapurple;
+        border-radius: 15px;
+        background-color: white;
+        line-height: 80px;
+        padding: 10px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      #a1{
+        text-decoration: none;
+        color: coral;
+      }
+      #a2{
+        text-decoration: none;
+        color: rebeccapurple;
+      }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>

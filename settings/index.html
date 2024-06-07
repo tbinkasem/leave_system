@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>การติดตั้งระบบลาออนไลน์</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <br /><br />
+      <img src="images/ptnicec.png" class="img-thumbnail" alt="logo" />
+      <br /><br />
+      <h2 class="h2 text-success">
+        ยินดีต้อนรับเข้าสู่การติดตั้งระบบลาออนไลน์
+      </h2>
+      <br />
+      <ul class="list-group">
+        <li class="list-group-item active" aria-current="true">
+            สิ่งที่ต้องตรวจสอบ / เตรียมการ / ดำเนินการ ก่อนไปหน้าถัดไป ดังนี้
+        </li>
+        <li class="list-group-item">
+            1. เครื่องบริการ Web Server เปิดทำงานแล้ว
+        </li>
+        <li class="list-group-item">
+            2. เครื่องบริการ Database Server หรือ MySQL Server เปิดทำงานแล้ว
+        </li>
+        <li class="list-group-item">
+            3. ชื่อผู้ใช้งาน สิทธิ์การใช้งานเทียบเท่า root หรือ root
+        </li>
+        <li class="list-group-item">
+            4. รหัสผ่านของผู้ใช้งานในข้อ 3
+        </li>
+        <li class="list-group-item">
+            5. รูปโลโก้ของสถานศึกษา ขนาดของรูป กว้าง (width) ไม่เกิน 240 พิกเซล และ สูง (height) ไม่เกิน 240 พิกเซล
+        </li>
+      </ul>
+      <br /><br /><br />
+
+      <a href="setting.html">
+        <button type="submit" class="btn btn-success">ไปหน้าติดตั้งระบบ</button>
+      </a>
+
+
+      <hr class="text-success" width="100%" />
+      &copy; ลิขสิทธิ์ สาขาวิชาเทคโนโลยีสารสนเทศ <br />
+      วิทยาลัยการอาชีพปัตตานี
+      <span id="daynow"></span>
+      <script>
+        const d = new Date();
+        document.getElementById("daynow").innerHTML = d.getFullYear() + 543;
+      </script>
+    </div>
+  </body>
+</html>

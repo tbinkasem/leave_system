@@ -12,9 +12,9 @@
         
     }
 
-    $sql = "SELECT Password FROM member WHERE UserName='".$_SESSION['UserName']."'";
-    $query = mysqli_query($conn,$sql);
-    $result = mysqli_fetch_assoc($query);
+    // $sql = "SELECT Password FROM member WHERE UserName='".$_SESSION['UserName']."'";
+    // $query = mysqli_query($conn,$sql);
+    // $result = mysqli_fetch_assoc($query);
 
 
 ?>
@@ -33,18 +33,18 @@
       <form action="process_edit_pass.php" method="post">
         <div class="title">ข้อมูลรหัสผ่าน</div>
         <div class="subtitle">ที่จะทำการแก้ไข</div>
-        <div class="input-container ic1">
+        <!-- <div class="input-container ic1">
           <input class="input" type="text" value="<?php echo $result["Password"];?>" disabled />
           <div class="cut"></div>
           <label for="firstname" class="placeholder">รหัสผ่านเดิม</label>
-        </div>
+        </div> -->
         <div class="input-container ic2">
-          <input class="input" type="password" name="new_password" required />
+          <input class="input" type="password" id="new_password" name="new_password" required />
           <div class="cut"></div>
           <label for="new_password" class="placeholder">รหัสผ่านใหม่</label>
         </div>
         <div class="input-container ic2">
-          <input class="input" type="password" id="confirm_password" required />
+          <input class="input" type="password" id="confirm_password" name="confirm_password" required />
           <div class="cut cut-short"></div>
           <label for="confirm_password" class="placeholder">ยืนยันรหัสผ่านใหม่</>
         </div>
@@ -56,9 +56,9 @@
       </div>
       <script src="js/confirm_pass.js"></script>
 
-  <?php
+  <!-- <?php
   mysqli_close($conn);
-  ?>
+  ?> -->
 
 </body>
 </html>

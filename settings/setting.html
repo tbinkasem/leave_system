@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>การตั้งค่าเชื่อมต่อระบบ</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+  </head>
+
+  <body>
+
+    <div class="container">
+        <br><br>
+        <h2 class='h2 text-dark'>กรุณากรอกข้อมูลที่ใช้ในการเชื่อมต่อ Database Server</h2>
+        <br><br>
+      <form action="connect_server.php" method="post">
+        <div class="mb-4">
+            <label class="form-label">
+                <img src="images/1-square.svg" alt="1">
+                ชื่อเครื่องให้บริการฐานข้อมูล (Host Name Database Server)
+            </label>
+            <input type="text" class="form-control" placeholder="เช่น localhost หรือ IP Address" name="hn"/>
+            <br>
+            <label for="exampleFormControlInput1" class="form-label">
+                <img src="images/2-square.svg" alt="2">
+                บัญชีผู้ใช้งานฐานข้อมูล (User Database Server)
+            </label>
+            <input type="text" class="form-control" placeholder="root หรือ user อื่น" name="un" />
+            <br>
+            <label for="exampleFormControlInput1" class="form-label">
+                <img src="images/3-square.svg" alt="3">
+                รหัสผ่านของบัญชีผู้ใช้งานฐานข้อมูล (Password User Database Server)
+            </label>
+            <input type="password" class="form-control" placeholder="xxxxxxxx" name="pw" />
+            <br>
+            <label for="exampleFormControlInput1" class="form-label">
+                <img src="images/4-square.svg" alt="4">
+                ชื่อฐานข้อมูลที่ต้องการสร้าง (กำหนดเองได้ ใช้ตัวภาษาอังกฤษเท่านั้น กรณีชื่อผสม 2 คำ ห้ามมีช่องว่าง)
+            </label>
+            <input type="text" class="form-control" placeholder="dbleave" name="db" />
+            <br>
+            <button type="submit" class="btn btn-outline-primary">ตรวจสอบข้อมูลระบบและสร้างฐานข้อมูล</button>
+
+  </body>
+
+</html>

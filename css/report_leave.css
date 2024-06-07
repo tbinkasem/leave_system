@@ -57,11 +57,12 @@ table th, table td{
 }
 
 table th:nth-child(2), table td:nth-child(2){
-    text-align: right;
+    text-align: center;
 }
 
 table td{
     background-color: #eee;
+    text-align: center;
 }
 
 table th{
@@ -75,10 +76,10 @@ table th{
 }
 
 .zigzag tbody tr:nth-child(odd){
-    transform: rotate(1.5deg);
+    transform: rotate(0.8deg);
 }
 
 .zigzag thead tr,
 .zigzag tbody tr:nth-child(even){
-    transform: rotate(-1.5deg);
+    transform: rotate(-0.8deg);
 }

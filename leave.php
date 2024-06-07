@@ -6,11 +6,15 @@
 
     if($_SESSION['UserName'] == "")
     {
-        echo "<img style='display: block; margin-left: auto; margin-right: auto;' src='images/block.png'>";
-        echo "<h2 style='text-align: center; color: red; margin-top: 10%;'>กรุณาทำการเข้าสู่ระบบ...</h2>";
-        echo "<meta http-equiv='refresh' content='3; url=index.html'>";
+        // echo "<img style='display: block; margin-left: auto; margin-right: auto;' src='images/block.png'>";
+        // echo "<h2 style='text-align: center; color: red; margin-top: 10%;'>กรุณาทำการเข้าสู่ระบบ...</h2>";
+        // echo "<meta http-equiv='refresh' content='3; url=index.html'>";
+
+        echo "<br><br><h2 style='text-align: center; color: red;'>คุณยังไม่เข้าระบบ...ไม่สามารถใช้งานได้</h2>";
+        echo "<img src='images/block.png' style='border: 1px dotted green; width: 30%; display: block; margin-left: auto; margin-right: auto;'>";
+        echo "<h3 style='text-align: center; color: blue;'>กรุณารอสักครู่...เพื่อไปหน้าเข้าสู่ระบบ</h3>";
+        echo "<meta http-equiv='refresh' content='3; url= index.html'>";
         exit();
-        
     }
 
     $dd = date('j');
@@ -97,10 +101,11 @@
 
     <div class="header">
         <img src="images/logo.png" alt="logo">
-        <a class="logo">ระบบลาออนไลน์ : <br>วิทยาลัยการอาชีพปัตตานี</a>
+        <a class="logo">ระบบลาออนไลน์<br>วิทยาลัยการอาชีพปัตตานี</a>
         <div class="header-right">
             <a class="active1">
-                <marquee behavior="alternate">ยินดีต้อนรับ</marquee>
+                <img src="images/<?php echo $_SESSION["Photo"]; ?>" alt="profile"><br>
+                <!-- <marquee behavior="alternate">ยินดีต้อนรับ</marquee> -->
                 <?php echo $_SESSION["FullName"]; ?>
             </a>
         </div>

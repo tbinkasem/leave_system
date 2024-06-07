@@ -3,8 +3,10 @@
     include "conf.php";
     session_start();
 
+    $pass = sha1($_POST['pass']);
+
     $strSQL = "SELECT * FROM member WHERE UserName = '".mysqli_real_escape_string($conn,$_POST['idcard'])."' 
-    and Password = '".mysqli_real_escape_string($conn,$_POST['pass'])."'";
+    and Password = '".mysqli_real_escape_string($conn,$pass)."'";
     $objQuery = mysqli_query($conn,$strSQL);
     $objResult = mysqli_fetch_array($objQuery);
     if(!$objResult)
